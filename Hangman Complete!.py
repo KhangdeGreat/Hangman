@@ -3,8 +3,8 @@ import sys
 import random
 
 word = ""
-player_lives = 5
 askUsr = ""
+
 count_play = 0
 count_win = 0
 topic = [
@@ -35,16 +35,18 @@ def topic1(usrTopic):
 	else:
 		recast()
 
-print("1. Play\n2. Exit")
-urChoice = input("Option: ")
 
-      
+os.system("cls")
+print("1. Play\n2. Exit")
+urChoice = int(input("Option: "))
+
+
 def recast():	
 	while True:
 		if urChoice == 1:
 			os.system("cls")
 			usrTopic = 0
-			usrTopic = int(input("\nPlayer 1 enter topic number(1-4): "))
+			usrTopic = int(input("Player 1 enter topic number(1-4): \ntype 1 for Cars topic! \ntype 2 for Dogss topic! \ntype 3 for Appless topic! \ntype 4 for Weather topic!\n"))
 			topic1(usrTopic)
 			word = random.choice(topic[usrTopic - 1])
 			print("\nGet ready to play Hangman!")
@@ -52,8 +54,8 @@ def recast():
 		elif urChoice == 2:
 			sys.exit()
 		else:
-			print("Not an option!, try agian. ")
-			recast()
+			recast()	 
+	
 
 def playAgain():  
 	askUsr = input("Again?(Y/N): ").lower()
@@ -61,9 +63,8 @@ def playAgain():
 	if askUsr == "y":
 		recast()
 	elif askUsr == "n":
-		print("Number of win:\n ", count_win)
-		print("")
-		print("Number of play:\n ", count_play)
+		print("Number of play: ", count_play)
+		print("Number of win: ", count_win)
 		sys.exit()
 	else:
 		print("Not an option")
