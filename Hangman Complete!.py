@@ -3,65 +3,59 @@ import sys
 import random
 
 word = ""
-askUsr = ""
-
 count_play = 0
 count_win = 0
 topic = [
-	["car", "caro", "carole"],
-	["dog", "doga", "dogalo"],
-	["apple", "appleni", "applenol"],
-	["hot", "cold", "coldest"]
+    ["Russia","Germany","United Kingdom","France","Italy","Spain","Ukraine","Poland","Netherlands","Finland","Vietnam","Thailan","Laos","Campodia","China"],
+    ["Audi","BMW","Bentley","Chevrolet","Dodge","Ford","Honda","Hyundai","Infiniti","Jaguar","Jeep","Kia","Land Rover","Lexus","Lincoln"],
+    ["Dog","Bear","Elephant","Polar bear","Turtle","Tortoise","Crocodile","Rabbit","Porcupine","Har","Hen","Pigeon","Albatross","Crow","Fish"],
+    ["apples","pears","oranges","grapefruits","mandarins","limes","apricots","peaches","plums","tropical","exotic","bananas","mangoes","berries","strawberries"]
 ]
 
 
-def topic1(usrTopic):
-	if usrTopic == 1:
+
+def topic1():
+	global usrTopic
+	usrTopic = input("Player 1 enter topic number(1-4): \ntype 1 for Country topic! \ntype 2 for Car brand topic! \ntype 3 for Animal topic! \ntype 4 for Fruit topic!\n")
+	if usrTopic == "1":
 		os.system("cls")
-		print("The topic is: Cars")
-		return topic[usrTopic - 1]
-	elif usrTopic == 2:
+		print("The topic is: Country")
+	elif usrTopic == "2":
 		os.system("cls")
-		print("The topic is: Dogss")
-		return topic[usrTopic - 1]
-	elif usrTopic == 3:
+		print("The topic is: Car brand")
+	elif usrTopic == "3":
 		os.system("cls")
-		print("The topic is: Appless")
-		return topic[usrTopic - 1]
-	elif usrTopic == 4:
+		print("The topic is: Animal")
+	elif usrTopic == "4":
 		os.system("cls")
-		print("The topic is: Weather")
-		return topic[usrTopic - 1]
+		print("The topic is: Fruit")
 	else:
-		recast()
+		os.system("cls")
+		topic1()
 
 
-os.system("cls")
-print("1. Play\n2. Exit")
-urChoice = int(input("Option: "))
-
-
-def recast():	
+def operator():
+	os.system("cls")
+	print("1. Play\n2. Exit")
+	urChoice = input("Option: ")	
 	while True:
-		if urChoice == 1:
+		if urChoice == "1":
 			os.system("cls")
-			usrTopic = 0
-			usrTopic = int(input("Player 1 enter topic number(1-4): \ntype 1 for Cars topic! \ntype 2 for Dogss topic! \ntype 3 for Appless topic! \ntype 4 for Weather topic!\n"))
-			topic1(usrTopic)
-			word = random.choice(topic[usrTopic - 1])
+			topic1()
+			word = random.choice(topic[int(usrTopic) - 1])
 			print("\nGet ready to play Hangman!")
 			start_game(word)
-		elif urChoice == 2:
+		elif urChoice == "2":
 			sys.exit()
 		else:
-			recast()	 
+			print("Not an option, try again!")
+			operator()	 
 	
 
 def playAgain():  
 	askUsr = input("Again?(Y/N): ").lower()
-	# while askUsr == "y" or askUsr == "n":
 	if askUsr == "y":
-		recast()
+		operator()
 	elif askUsr == "n":
 		print("Number of play: ", count_play)
 		print("Number of win: ", count_win)
@@ -77,7 +71,6 @@ def start_game(word):
 	number_dashes=["_" for i in range(len(word))]
 	print(visuals(player_lives))
 	print(" ".join(number_dashes))
-
 	while player_lives == player_lives:
 		input_letter =input("Player 2, input your letter guess: ")
 		os.system("cls")
@@ -220,4 +213,4 @@ def visuals(player_lives):
 ⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⢿⣿⣿⣿⣿⠟
 		"""	
-recast()
+operator()
